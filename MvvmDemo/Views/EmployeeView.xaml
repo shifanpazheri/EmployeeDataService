@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="MvvmDemo.Views.EMployeeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MvvmDemo.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontSize="33">Employee Management</Label>
+        <Label Grid.Column="0" Grid.Row="1" FontSize="20">Enter Id:</Label>
+        <Label Grid.Column="0" Grid.Row="2" FontSize="20">Enter Name:</Label>
+        <Label Grid.Column="0" Grid.Row="3" FontSize="20">Enter Age:</Label>
+        <TextBox Name="txtId" Grid.Column="1" Grid.Row="1" Text="{Binding Path=CurrentEmployee.Id,Mode=TwoWay}"></TextBox>
+        <TextBox Name="txtName" Grid.Column="1" Grid.Row="2" Text="{Binding Path=CurrentEmployee.Name,Mode=TwoWay}"></TextBox>
+        <TextBox Name="txtAge" Grid.Column="1" Grid.Row="3" Text="{Binding Path=CurrentEmployee.Age,Mode=TwoWay}"></TextBox>
+        <Grid Grid.Column="1" Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="btn1" Grid.Column="0" Command="{Binding Path=SaveCommand}">ADD</Button>
+            <Button Name="btn2" Grid.Column="1" Command="{Binding Path=SearchCommand}">SEARCH</Button>
+            <Button Name="btn3" Grid.Column="2" Command="{Binding Path=UpdateCommand}">UPDATE</Button>
+            <Button Name="btn4" Grid.Column="3" Command="{Binding Path=DeleteCommand}">DELETE</Button>
+        </Grid>
+        <TextBlock Name="TextBlockMessage" Grid.Row="5" Grid.Column="1" Text="{Binding Path=Message,Mode=TwoWay}">
+        </TextBlock>
+        <DataGrid Name="dgEmployee" AutoGenerateColumns="False" Grid.Row="6" Grid.Column="1" Grid.RowSpan="2" ItemsSource="{Binding Path=EmployeeList}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Employee Id" Width="auto" Binding="{Binding Path=Id,Mode=TwoWay}"/>
+                <DataGridTextColumn Header="Employee Name" Width="auto" Binding="{Binding Path=Name,Mode=TwoWay}"/>
+                <DataGridTextColumn Header="Employee Age" Width="auto" Binding="{Binding Path=Age,Mode=TwoWay}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</UserControl>
